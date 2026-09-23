@@ -1,0 +1,13 @@
+{
+  "run_id": 871617270097767,
+  "notebook_path": "/Shared/ianbal-genie-iac/final/validacion-final",
+  "notebook_id": 1277065895608519,
+  "source_sha256": "29c600bb00adec48e473338789071392e104840006b2e73279304f4e90d25698",
+  "validator_sha256": "67b2bf9b1fa598335fc38e4d026eecb235cddcf0e05f7719c2d23a04f73fdb0a",
+  "notebook_commit": "d0614d845dfe88d3e2142df73ced6ac06b3e17bb",
+  "result_state": "SUCCESS",
+  "notebook_url": "https://dbc-0410b264-20c7.cloud.databricks.com/editor/notebooks/1277065895608519?o=7474657121564806",
+  "run_page_url": "https://dbc-0410b264-20c7.cloud.databricks.com/?o=7474657121564806#job/998210693303168/run/871617270097767",
+  "start_time": 1790204090187,
+  "end_time": 1790204130032
+}

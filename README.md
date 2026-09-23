@@ -21,3 +21,17 @@ Las preguntas vienen del benchmark nativo incluido en el export docente original
 No se presupone mejora: se reportan aciertos, errores técnicos, casos corregidos y regresiones. Son 20 preguntas conocidas, no un holdout; revisar referencias discutibles (en particular operaciones nominales con distintas monedas) y resultados humanos antes de decisiones de negocio. Las respuestas/gold con filas y trazas permanecen en `.local/` y el workspace autorizado; este repo privado contiene configuración y resúmenes de evidencia.
 
 Tests: `python -m unittest discover -s tests -v`. Las dependencias del Job remoto se fijan en `evaluation/submit.py`. Para CLI local basta `databricks-sdk==0.140.0`. No se despliegan tablas, permisos o infraestructura del warehouse ni se habilita CD automático.
+
+
+## Resultado de la secuencia real · 23 septiembre 2026
+
+V0 **17/20**, V1 **18/20**, V2 **20/20** según el mismo juez automático: 20 casos juzgados y cero errores de ejecución por versión. Una única corrida completa por versión. La captura V0 requirió previamente corregir un fallo de arranque, documentado en `docs/INCIDENTES.md`.
+
+- [Validación final ejecutada en Databricks](https://dbc-0410b264-20c7.cloud.databricks.com/editor/notebooks/1277065895608519?o=7474657121564806): SUCCESS, después del cierre de V2; verifica orden temporal, configuración desplegada, commits, hashes y resultados.
+- [Evidencia final](evidence/final-validation.json) y [recibo del notebook](evidence/final-notebook.json).
+- [Flujo explicado paso a paso](docs/FLUJO-REAL.md) y [guía de clase/versiones](docs/GUIA-CLASE.md).
+- [Cambios V0 → V1](https://github.com/manuelarguelles/ianbal-genie-iac/compare/v0-evaluacion...v1) y [V1 → V2](https://github.com/manuelarguelles/ianbal-genie-iac/compare/v1...v2).
+
+**Interpretación pendiente de revisión humana:** I06 pregunta por proveedores, pero la referencia devuelve ofertas: se verificaron cuatro proveedores y seis ofertas. El 20/20 de V2 es acuerdo con el benchmark, no demostración de corrección de negocio. I17 calcula un promedio nominal entre monedas. Estos problemas quedan registrados; no se cambió el examen durante la comparación. Una revisión del benchmark abrirá otro ciclo comparable.
+
+La Review App contiene las 20 trazas de V0 preparadas para valoración humana; no se han inventado ni enviado anotaciones humanas. En el experimento, abrir **Labeling sessions → Ianbal-IaC-V0-20-casos-revision-Manuel**. Crear una valoración no vuelve a ejecutar Genie ni modifica la métrica automática original.

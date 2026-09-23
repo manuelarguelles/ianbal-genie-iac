@@ -1,0 +1,113 @@
+{
+  "integrity_verified": true,
+  "sequential_deployments": true,
+  "same_space": true,
+  "versions": [
+    {
+      "version": "V0",
+      "commit": "ff6de6c917940c8bed0c25bdecb2d2250819f128",
+      "space_id": "01f1b79d2b391b259fe95e816e6adcbd",
+      "correct": 17,
+      "judged": 20,
+      "attempted": 20,
+      "execution_errors": 0,
+      "judge_errors": 0,
+      "deployment_at_utc": "2026-09-23T22:26:01.293985+00:00",
+      "started_at_utc": "2026-09-23T22:26:54.989952+00:00",
+      "completed_at_utc": "2026-09-23T22:34:29.446544+00:00",
+      "run_id": "105713fe7b5844519305879ec86bbf11",
+      "config_sha256": "cba43825233438c42d32499082ee7538ae99ca58f7028f17d8a7de55bfdfdab8",
+      "report_sha256": "b962e069883419d95d6e77cb4f6ccac53083340fe4f6d1b7f226146db07db82b"
+    },
+    {
+      "version": "V1",
+      "commit": "c38a730e6e9a437ca37701b8ae6636533f74eabe",
+      "space_id": "01f1b79d2b391b259fe95e816e6adcbd",
+      "correct": 18,
+      "judged": 20,
+      "attempted": 20,
+      "execution_errors": 0,
+      "judge_errors": 0,
+      "deployment_at_utc": "2026-09-23T22:36:16.018246+00:00",
+      "started_at_utc": "2026-09-23T22:36:52.265586+00:00",
+      "completed_at_utc": "2026-09-23T22:44:17.244584+00:00",
+      "run_id": "bd9946f98be04e069f8b95b26f8b21e9",
+      "config_sha256": "17791a9fb5ef7a57da713101b36c35b4b4176c0c46a1991d767d959cddcc2007",
+      "report_sha256": "3ef07489245324e263ee9a948ee1f935fd6d5c5f6c30bfd4d6ba851356f94e9c"
+    },
+    {
+      "version": "V2",
+      "commit": "0f89ddd44e3259a995e58b74b81b8e89adc1c38c",
+      "space_id": "01f1b79d2b391b259fe95e816e6adcbd",
+      "correct": 20,
+      "judged": 20,
+      "attempted": 20,
+      "execution_errors": 0,
+      "judge_errors": 0,
+      "deployment_at_utc": "2026-09-23T22:46:04.463902+00:00",
+      "started_at_utc": "2026-09-23T22:46:39.863692+00:00",
+      "completed_at_utc": "2026-09-23T22:53:49.668468+00:00",
+      "run_id": "1e3a78aca5b04a15a49ef339b0859da0",
+      "config_sha256": "9e04d6d7d7cac19863595e66aa6f034eedd5fbeec47cf3a038680c9686966f3d",
+      "report_sha256": "8ccd8854a78f41579dbd9125fbbd5f5dcce202103be9d42887a16412aaefdacd"
+    }
+  ],
+  "deltas": [
+    {
+      "from": "V0",
+      "to": "V1",
+      "corrected": [
+        "I08",
+        "I10"
+      ],
+      "regressed": [
+        "I06"
+      ],
+      "unpaired": [],
+      "net": 1,
+      "interpretation": "mejora observada"
+    },
+    {
+      "from": "V1",
+      "to": "V2",
+      "corrected": [
+        "I06",
+        "I17"
+      ],
+      "regressed": [],
+      "unpaired": [],
+      "net": 2,
+      "interpretation": "mejora observada"
+    }
+  ],
+  "dataset_sha256": "91a2a8108cb8673af3f2f02dcf27b0f75cd9f629be632c01a4b0563a78bdbb0a",
+  "rubric_sha256": "ef8f4fffc7d8c47aea97168f0c90727edba5f05f01c82a749e978abb44da03ba",
+  "judge": "databricks-meta-llama-3-3-70b-instruct",
+  "human_review": "pending",
+  "reference_issues": [
+    {
+      "case_id": "I06",
+      "issue": "La pregunta pide proveedores pero la referencia SQL lee item_n_offers",
+      "verified_sql_result": {
+        "ofertas": 6,
+        "proveedores_distintos": 4
+      },
+      "verification": "COUNT(*) frente a COUNT(DISTINCT supplier_id), misma fuente y filtro; SQL SUCCEEDED",
+      "benchmark_unchanged": true,
+      "human_review": "pending"
+    },
+    {
+      "case_id": "I17",
+      "issue": "El promedio global mezcla monedas: valor nominal, no precio económicamente comparable",
+      "benchmark_unchanged": true,
+      "human_review": "pending"
+    }
+  ],
+  "limitations": [
+    "20 preguntas conocidas; no prueba de generalización",
+    "El juez LLM puede variar; una sola corrida por versión",
+    "Referencias nominales con distintas monedas requieren revisión humana",
+    "Los hashes vinculan capturas y archivos exportados de Git; no son una firma criptográfica externa"
+  ],
+  "notebook_executed_at_utc": "2026-09-23T22:55:26.450159+00:00"
+}
