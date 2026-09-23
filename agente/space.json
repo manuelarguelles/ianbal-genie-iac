@@ -1,0 +1,786 @@
+{
+  "version": 2,
+  "config": {
+    "sample_questions": [
+      {
+        "id": "00492b4af33449fa8ccb9457af232298",
+        "question": [
+          "¿Cuál es el proveedor más barato para IAnbal Jewelry Necklace 002?"
+        ]
+      },
+      {
+        "id": "3453d2d7d46141ad81784f3842734b6b",
+        "question": [
+          "¿Cuánto más caro que el promedio paga IAnbal Guatemala Central DC por sus items?"
+        ]
+      },
+      {
+        "id": "350da20f82ed400585b1eea212ee5ca0",
+        "question": [
+          "¿Cuál es el precio vigente que paga IAnbal Lima Central DC a Ecuador Components Synthetics?"
+        ]
+      },
+      {
+        "id": "faec8afd973e49d583b0457d3f15d45e",
+        "question": [
+          "¿Qué items tienen mayor dispersión de precio entre proveedores?"
+        ]
+      }
+    ]
+  },
+  "data_sources": {
+    "tables": [
+      {
+        "identifier": "ianbal_sop_lab.agents.gold_supplier_price_variation",
+        "column_configs": [
+          {
+            "column_name": "cheapest_rank",
+            "synonyms": [
+              "ranking de precio",
+              "posición por precio"
+            ],
+            "enable_format_assistance": true
+          },
+          {
+            "column_name": "cost_vs_item_avg_pct",
+            "synonyms": [
+              "desviación vs promedio",
+              "cuánto más caro o barato que el promedio"
+            ],
+            "enable_format_assistance": true
+          },
+          {
+            "column_name": "currency_code",
+            "synonyms": [
+              "moneda"
+            ],
+            "enable_format_assistance": true
+          },
+          {
+            "column_name": "is_cheapest_offer",
+            "synonyms": [
+              "proveedor más barato",
+              "mejor precio",
+              "oferta más conveniente"
+            ],
+            "enable_format_assistance": true
+          },
+          {
+            "column_name": "is_most_expensive_offer",
+            "synonyms": [
+              "proveedor más caro",
+              "peor precio"
+            ],
+            "enable_format_assistance": true
+          },
+          {
+            "column_name": "item_avg_cost",
+            "synonyms": [
+              "precio promedio del item",
+              "costo promedio"
+            ],
+            "enable_format_assistance": true
+          },
+          {
+            "column_name": "item_max_cost",
+            "synonyms": [
+              "precio más caro del item",
+              "máximo precio"
+            ],
+            "enable_format_assistance": true
+          },
+          {
+            "column_name": "item_min_cost",
+            "synonyms": [
+              "precio más barato del item",
+              "mínimo precio"
+            ],
+            "enable_format_assistance": true
+          },
+          {
+            "column_name": "item_n_offers",
+            "synonyms": [
+              "cantidad de ofertas",
+              "número de proveedores del item"
+            ],
+            "enable_format_assistance": true
+          },
+          {
+            "column_name": "item_name",
+            "synonyms": [
+              "producto",
+              "material",
+              "artículo",
+              "SKU de compra"
+            ],
+            "enable_format_assistance": true,
+            "enable_entity_matching": true
+          },
+          {
+            "column_name": "item_price_spread_pct",
+            "synonyms": [
+              "variación de precio",
+              "dispersión de precio",
+              "brecha de precio",
+              "spread de precio"
+            ],
+            "enable_format_assistance": true
+          },
+          {
+            "column_name": "price_effective_date",
+            "synonyms": [
+              "fecha de vigencia",
+              "fecha de contrato",
+              "desde cuándo rige el precio"
+            ],
+            "enable_format_assistance": true
+          },
+          {
+            "column_name": "site_name",
+            "synonyms": [
+              "sitio",
+              "planta",
+              "centro de distribución",
+              "DC",
+              "almacén"
+            ],
+            "enable_format_assistance": true,
+            "enable_entity_matching": true
+          },
+          {
+            "column_name": "supplier_name",
+            "synonyms": [
+              "proveedor",
+              "vendor",
+              "supplier"
+            ],
+            "enable_format_assistance": true,
+            "enable_entity_matching": true
+          },
+          {
+            "column_name": "unit_cost",
+            "synonyms": [
+              "precio",
+              "costo de compra",
+              "precio de proveedor",
+              "costo unitario",
+              "precio contratado"
+            ],
+            "enable_format_assistance": true
+          }
+        ]
+      },
+      {
+        "identifier": "ianbal_sop_lab.master.silver_dim_item",
+        "column_configs": [
+          {
+            "column_name": "item_name",
+            "enable_format_assistance": true,
+            "enable_entity_matching": true
+          },
+          {
+            "column_name": "item_type",
+            "synonyms": [
+              "tipo de item",
+              "categoría de material"
+            ],
+            "enable_format_assistance": true
+          }
+        ]
+      },
+      {
+        "identifier": "ianbal_sop_lab.master.silver_dim_site",
+        "column_configs": [
+          {
+            "column_name": "country_code",
+            "synonyms": [
+              "país del sitio"
+            ],
+            "enable_format_assistance": true
+          },
+          {
+            "column_name": "site_name",
+            "enable_format_assistance": true,
+            "enable_entity_matching": true
+          },
+          {
+            "column_name": "site_type",
+            "synonyms": [
+              "tipo de sitio"
+            ],
+            "enable_format_assistance": true
+          }
+        ]
+      },
+      {
+        "identifier": "ianbal_sop_lab.supply.silver_bridge_supplier_item_site",
+        "column_configs": [
+          {
+            "column_name": "contract_lead_time_days",
+            "synonyms": [
+              "lead time",
+              "tiempo de entrega del proveedor"
+            ],
+            "enable_format_assistance": true
+          },
+          {
+            "column_name": "moq_qty",
+            "synonyms": [
+              "cantidad mínima de orden",
+              "MOQ"
+            ],
+            "enable_format_assistance": true
+          },
+          {
+            "column_name": "source_priority",
+            "synonyms": [
+              "prioridad de abastecimiento"
+            ],
+            "enable_format_assistance": true
+          }
+        ]
+      },
+      {
+        "identifier": "ianbal_sop_lab.supply.silver_dim_supplier",
+        "column_configs": [
+          {
+            "column_name": "active_flag",
+            "synonyms": [
+              "proveedor activo"
+            ],
+            "enable_format_assistance": true
+          },
+          {
+            "column_name": "country_code",
+            "synonyms": [
+              "país del proveedor"
+            ],
+            "enable_format_assistance": true
+          },
+          {
+            "column_name": "default_currency_code",
+            "synonyms": [
+              "moneda por defecto del proveedor"
+            ],
+            "enable_format_assistance": true
+          },
+          {
+            "column_name": "supplier_name",
+            "enable_format_assistance": true,
+            "enable_entity_matching": true
+          },
+          {
+            "column_name": "supplier_type",
+            "synonyms": [
+              "tipo de proveedor",
+              "categoría de proveedor"
+            ],
+            "enable_format_assistance": true
+          }
+        ]
+      }
+    ]
+  },
+  "instructions": {
+    "text_instructions": [
+      {
+        "id": "932cd35395b849a48d9f9b69867b4a48",
+        "content": [
+          "${agente/instrucciones.md}"
+        ]
+      }
+    ],
+    "example_question_sqls": [
+      {
+        "id": "3351d44b555a4da3a4ad89d4f363cf4f",
+        "question": [
+          "¿Qué items tienen mayor dispersión de precio entre proveedores?"
+        ],
+        "sql": [
+          "SELECT item_name, item_min_cost, item_max_cost, item_avg_cost, item_n_offers,\n",
+          "ROUND(item_price_spread_pct * 100, 1) AS spread_pct\n",
+          "FROM ianbal_sop_lab.agents.gold_supplier_price_variation\n",
+          "GROUP BY item_name, item_min_cost, item_max_cost, item_avg_cost, item_n_offers, item_price_spread_pct\n",
+          "ORDER BY item_price_spread_pct DESC\n",
+          "LIMIT 10;"
+        ]
+      },
+      {
+        "id": "4824bea035734be99a61eaeb637bb1e7",
+        "question": [
+          "¿Cuál es el proveedor más barato para IAnbal Jewelry Necklace 002?"
+        ],
+        "sql": [
+          "SELECT supplier_name, site_name, unit_cost, currency_code\n",
+          "FROM ianbal_sop_lab.agents.gold_supplier_price_variation\n",
+          "WHERE item_name = 'IAnbal Jewelry Necklace 002'\n",
+          "ORDER BY unit_cost ASC\n",
+          "LIMIT 1;"
+        ]
+      },
+      {
+        "id": "7b5de0e008a84ed3a20d721120eaca6e",
+        "question": [
+          "¿Cuánto más caro que el promedio paga IAnbal Guatemala Central DC por sus items?"
+        ],
+        "sql": [
+          "SELECT item_name, supplier_name, unit_cost, item_avg_cost,\n",
+          "ROUND(cost_vs_item_avg_pct * 100, 1) AS pct_vs_avg\n",
+          "FROM ianbal_sop_lab.agents.gold_supplier_price_variation\n",
+          "WHERE site_name = 'IAnbal Guatemala Central DC'\n",
+          "ORDER BY cost_vs_item_avg_pct DESC;"
+        ]
+      },
+      {
+        "id": "80c929a3eddb4d1ea8da44cff8b4e7b3",
+        "question": [
+          "¿Cuál es el precio vigente que paga IAnbal Lima Central DC a Ecuador Components Synthetics por un item puntual?"
+        ],
+        "sql": [
+          "SELECT item_name, unit_cost, currency_code, price_effective_date\n",
+          "FROM ianbal_sop_lab.agents.gold_supplier_price_variation\n",
+          "WHERE site_name = 'IAnbal Lima Central DC' AND supplier_name = 'Ecuador Components Synthetics';"
+        ]
+      },
+      {
+        "id": "c76ea2bbfddd43d6b367dd50c79ca424",
+        "question": [
+          "¿Qué proveedores tienen más items donde son la opción más cara?"
+        ],
+        "sql": [
+          "SELECT supplier_name, COUNT(*) AS items_mas_caros\n",
+          "FROM ianbal_sop_lab.agents.gold_supplier_price_variation\n",
+          "WHERE is_most_expensive_offer = TRUE\n",
+          "GROUP BY supplier_name\n",
+          "ORDER BY items_mas_caros DESC;"
+        ]
+      }
+    ],
+    "join_specs": [
+      {
+        "id": "286bac9f8ac241ebbb562a497641714a",
+        "left": {
+          "identifier": "ianbal_sop_lab.agents.gold_supplier_price_variation",
+          "alias": "precio"
+        },
+        "right": {
+          "identifier": "ianbal_sop_lab.supply.silver_dim_supplier",
+          "alias": "proveedor"
+        },
+        "sql": [
+          "`precio`.`supplier_id` = `proveedor`.`supplier_id`",
+          "--rt=FROM_RELATIONSHIP_TYPE_MANY_TO_ONE--"
+        ]
+      },
+      {
+        "id": "b6f1eb48c726422c90e26cf7c6d1f4db",
+        "left": {
+          "identifier": "ianbal_sop_lab.agents.gold_supplier_price_variation",
+          "alias": "precio"
+        },
+        "right": {
+          "identifier": "ianbal_sop_lab.supply.silver_bridge_supplier_item_site",
+          "alias": "acuerdo"
+        },
+        "sql": [
+          "`precio`.`item_id` = `acuerdo`.`item_id` AND `precio`.`supplier_id` = `acuerdo`.`supplier_id` AND `precio`.`receiving_site_id` = `acuerdo`.`receiving_site_id`",
+          "--rt=FROM_RELATIONSHIP_TYPE_ONE_TO_ONE--"
+        ]
+      },
+      {
+        "id": "e58cf73163b54b05aed96323094f6606",
+        "left": {
+          "identifier": "ianbal_sop_lab.agents.gold_supplier_price_variation",
+          "alias": "precio"
+        },
+        "right": {
+          "identifier": "ianbal_sop_lab.master.silver_dim_item",
+          "alias": "item"
+        },
+        "sql": [
+          "`precio`.`item_id` = `item`.`item_id`",
+          "--rt=FROM_RELATIONSHIP_TYPE_MANY_TO_ONE--"
+        ]
+      },
+      {
+        "id": "fd0d837e357a467eb5ca7105dea7e508",
+        "left": {
+          "identifier": "ianbal_sop_lab.agents.gold_supplier_price_variation",
+          "alias": "precio"
+        },
+        "right": {
+          "identifier": "ianbal_sop_lab.master.silver_dim_site",
+          "alias": "sitio"
+        },
+        "sql": [
+          "`precio`.`receiving_site_id` = `sitio`.`site_id`",
+          "--rt=FROM_RELATIONSHIP_TYPE_MANY_TO_ONE--"
+        ]
+      }
+    ],
+    "sql_snippets": {
+      "filters": [
+        {
+          "id": "7f9dae877105484bb4c4ac15abfdaaf1",
+          "sql": [
+            "item_n_offers >= 3"
+          ],
+          "display_name": "Items con al menos 3 ofertas de proveedor",
+          "synonyms": [
+            "items comparables"
+          ]
+        },
+        {
+          "id": "956c07540a7947e3aa1a5c64038c1504",
+          "sql": [
+            "is_most_expensive_offer = TRUE"
+          ],
+          "display_name": "Proveedor más caro",
+          "synonyms": [
+            "peor precio"
+          ]
+        },
+        {
+          "id": "ef794b8d299443a38333282a192a8865",
+          "sql": [
+            "is_cheapest_offer = TRUE"
+          ],
+          "display_name": "Proveedor más barato",
+          "synonyms": [
+            "mejor precio",
+            "oferta más conveniente"
+          ]
+        }
+      ],
+      "expressions": [
+        {
+          "id": "cfcd926853474e0db4cc50c990055d62",
+          "sql": [
+            "ROUND(cost_vs_item_avg_pct * 100, 1)"
+          ],
+          "display_name": "Desviación vs. promedio del item (%)",
+          "synonyms": [
+            "cuánto más caro o barato que el promedio"
+          ]
+        },
+        {
+          "id": "d0d70b0c810f4e0da892fa94f9df820f",
+          "sql": [
+            "ROUND(item_price_spread_pct * 100, 1)"
+          ],
+          "display_name": "Variación de precio del item (%)",
+          "synonyms": [
+            "dispersión %",
+            "brecha %"
+          ]
+        }
+      ],
+      "measures": [
+        {
+          "id": "5cb1e8515fbd42d9b80585e864280fb7",
+          "sql": [
+            "MIN(unit_cost)"
+          ],
+          "display_name": "Precio de compra mínimo",
+          "synonyms": [
+            "mejor precio disponible"
+          ]
+        },
+        {
+          "id": "ac783aca4101450fb8ee37e0460765a0",
+          "sql": [
+            "AVG(unit_cost)"
+          ],
+          "display_name": "Precio de compra promedio",
+          "synonyms": [
+            "costo promedio de compra"
+          ]
+        }
+      ]
+    }
+  },
+  "benchmarks": {
+    "questions": [
+      {
+        "id": "fa0e5cd312ff4048bbcbcfb852149c29",
+        "question": [
+          "¿Cuál es el precio vigente que paga IAnbal Guatemala Central DC a Guatemala Cosmetic Supply Synthetics por IAnbal Jewelry Necklace 002?"
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT unit_cost, currency_code FROM ianbal_sop_lab.agents.gold_supplier_price_variation WHERE item_name = 'IAnbal Jewelry Necklace 002' AND supplier_name = 'Guatemala Cosmetic Supply Synthetics' AND site_name = 'IAnbal Guatemala Central DC';"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "dff16aaee0d94f8c9b8bdaa6a4ce1d16",
+        "question": [
+          "¿Cuál es el proveedor más barato para IAnbal Jewelry Necklace 002?"
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT supplier_name, site_name, unit_cost FROM ianbal_sop_lab.agents.gold_supplier_price_variation WHERE item_name = 'IAnbal Jewelry Necklace 002' ORDER BY unit_cost ASC LIMIT 1;"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "dad65e6e9c60458db307497a54cae6f1",
+        "question": [
+          "¿Cuánto más caro que el promedio del item paga IAnbal Quito Central DC a Guatemala Cosmetic Supply Synthetics por IAnbal Jewelry Necklace 002?"
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT ROUND(cost_vs_item_avg_pct * 100, 1) AS pct_vs_avg FROM ianbal_sop_lab.agents.gold_supplier_price_variation WHERE site_name = 'IAnbal Quito Central DC' AND supplier_name = 'Guatemala Cosmetic Supply Synthetics' AND item_name = 'IAnbal Jewelry Necklace 002';"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "c514ed124a8c44599c3f700b43a313f4",
+        "question": [
+          "¿Cuáles son todos los proveedores y precios registrados para IAnbal Personal Care Hair 017, ordenados de más barato a más caro?"
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT supplier_name, site_name, unit_cost FROM ianbal_sop_lab.agents.gold_supplier_price_variation WHERE item_name = 'IAnbal Personal Care Hair 017' ORDER BY unit_cost ASC;"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "aa9f76e2ef5b467fbb987ce9782265dd",
+        "question": [
+          "Listar todos los precios que paga IAnbal Santa Cruz Central DC ordenados de mayor a menor."
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT item_name, supplier_name, unit_cost FROM ianbal_sop_lab.agents.gold_supplier_price_variation WHERE site_name = 'IAnbal Santa Cruz Central DC' ORDER BY unit_cost DESC;"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "aa4f92852dd54a4dbb233fb233546a84",
+        "question": [
+          "¿Cuántos proveedores ofrecen IAnbal Jewelry Necklace 002?"
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT DISTINCT item_n_offers FROM ianbal_sop_lab.agents.gold_supplier_price_variation WHERE item_name = 'IAnbal Jewelry Necklace 002';"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "a0a20b54eeea469a85e37eea97c78e04",
+        "question": [
+          "¿Cuál es la dispersión de precio (spread %) de IAnbal Jewelry Necklace 002?"
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT DISTINCT ROUND(item_price_spread_pct * 100, 1) AS spread_pct FROM ianbal_sop_lab.agents.gold_supplier_price_variation WHERE item_name = 'IAnbal Jewelry Necklace 002';"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "9ee4a977b18740d9827356c6bda6df27",
+        "question": [
+          "¿Cuáles son los 5 items con menor dispersión de precio entre proveedores (entre los que tienen más de una oferta)?"
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT DISTINCT item_name, ROUND(item_price_spread_pct * 100, 1) AS spread_pct FROM ianbal_sop_lab.agents.gold_supplier_price_variation WHERE item_n_offers > 1 ORDER BY spread_pct ASC LIMIT 5;"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "8d25fb1611d44e968b0e2bba754522e5",
+        "question": [
+          "¿Cuál es el proveedor más caro para IAnbal Jewelry Necklace 002?"
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT supplier_name, site_name, unit_cost FROM ianbal_sop_lab.agents.gold_supplier_price_variation WHERE item_name = 'IAnbal Jewelry Necklace 002' ORDER BY unit_cost DESC LIMIT 1;"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "836e4ba10c3b43d4aa1991c687f6afba",
+        "question": [
+          "¿Cuáles son los 5 items con mayor dispersión de precio entre proveedores?"
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT DISTINCT item_name, ROUND(item_price_spread_pct * 100, 1) AS spread_pct FROM ianbal_sop_lab.agents.gold_supplier_price_variation ORDER BY spread_pct DESC LIMIT 5;"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "7ef4e0c38ea6414d9f61ce2b647c77ef",
+        "question": [
+          "¿Desde qué fecha está vigente el precio que paga IAnbal Mexico Central DC a Andina Finished Goods Synthetics por IAnbal Jewelry Necklace 002?"
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT price_effective_date FROM ianbal_sop_lab.agents.gold_supplier_price_variation WHERE site_name = 'IAnbal Mexico Central DC' AND supplier_name = 'Andina Finished Goods Synthetics' AND item_name = 'IAnbal Jewelry Necklace 002';"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "48f1a36286c34aae8a4f481055872818",
+        "question": [
+          "¿Qué proveedor aparece más veces como la opción más cara entre los items que abastece?"
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT supplier_name, COUNT(*) AS items_mas_caros FROM ianbal_sop_lab.agents.gold_supplier_price_variation WHERE is_most_expensive_offer = TRUE GROUP BY supplier_name ORDER BY items_mas_caros DESC LIMIT 1;"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "2a29b4024b504b6c9af9109f80dc9846",
+        "question": [
+          "¿Cuántos proveedores distintos tiene contratados el sitio IAnbal Guatemala Central DC?"
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT COUNT(DISTINCT supplier_id) AS proveedores FROM ianbal_sop_lab.agents.gold_supplier_price_variation WHERE site_name = 'IAnbal Guatemala Central DC';"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "29e2ae82ac264fa7aaefad2f77d3d37c",
+        "question": [
+          "¿Cuál es el precio máximo y mínimo registrado para IAnbal Personal Care Hair 017?"
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT DISTINCT item_min_cost, item_max_cost FROM ianbal_sop_lab.agents.gold_supplier_price_variation WHERE item_name = 'IAnbal Personal Care Hair 017';"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "21f449c56a4d4d0b839ef1094bedba0f",
+        "question": [
+          "¿Cuál es el precio promedio de IAnbal Jewelry Necklace 002 entre todos los proveedores?"
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT ROUND(AVG(unit_cost), 4) AS precio_promedio FROM ianbal_sop_lab.agents.gold_supplier_price_variation WHERE item_name = 'IAnbal Jewelry Necklace 002';"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "1d3c547268ff4b21b74c3c96521d59a3",
+        "question": [
+          "¿Qué precio paga IAnbal Lima Central DC a Ecuador Components Synthetics por IAnbal Jewelry Necklace 002?"
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT unit_cost, currency_code FROM ianbal_sop_lab.agents.gold_supplier_price_variation WHERE site_name = 'IAnbal Lima Central DC' AND supplier_name = 'Ecuador Components Synthetics' AND item_name = 'IAnbal Jewelry Necklace 002';"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "1944597eb4184417b240616f30ab46a4",
+        "question": [
+          "¿Cuál es el precio de compra promedio de todos los items en el dataset?"
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT ROUND(AVG(unit_cost), 4) AS precio_promedio_global FROM ianbal_sop_lab.agents.gold_supplier_price_variation;"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "16ca37e27f1042538f0d7cbade9ba76a",
+        "question": [
+          "¿Cuántos items distintos tienen registrado precio de compra en el dataset?"
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT COUNT(DISTINCT item_id) AS items_con_precio FROM ianbal_sop_lab.agents.gold_supplier_price_variation;"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "0c4fea76f25242428c58d410444711b2",
+        "question": [
+          "¿En qué moneda está expresado el precio que paga IAnbal Bogota Central DC a sus proveedores?"
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT DISTINCT currency_code FROM ianbal_sop_lab.agents.gold_supplier_price_variation WHERE site_name = 'IAnbal Bogota Central DC';"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "014ee41abcbe4296b16e521d98f0df6a",
+        "question": [
+          "¿Qué proveedor aparece más veces como la opción más barata entre los items que abastece?"
+        ],
+        "answer": [
+          {
+            "format": "SQL",
+            "content": [
+              "SELECT supplier_name, COUNT(*) AS items_mas_baratos FROM ianbal_sop_lab.agents.gold_supplier_price_variation WHERE is_cheapest_offer = TRUE GROUP BY supplier_name ORDER BY items_mas_baratos DESC LIMIT 1;"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

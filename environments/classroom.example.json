@@ -1,0 +1,7 @@
+{
+  "profile": "databricks-ai-engineer-aws",
+  "warehouse_id": "REEMPLAZAR_WAREHOUSE_ID",
+  "title": "Ianbal — Git + IaC — secuencia real",
+  "description": "V0, V1 y V2 desplegados secuencialmente desde commits reales. Evaluación posterior a cada deploy.",
+  "space_id": null
+}

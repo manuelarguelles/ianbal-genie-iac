@@ -1,0 +1,4 @@
+databricks-sdk==0.140.0
+mlflow[databricks]==3.16.0
+openai==3.16.2
+pandas>=2,<3
