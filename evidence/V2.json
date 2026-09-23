@@ -1,0 +1,129 @@
+{
+  "version": "V2",
+  "commit": "0f89ddd44e3259a995e58b74b81b8e89adc1c38c",
+  "space_id": "01f1b79d2b391b259fe95e816e6adcbd",
+  "deployment_at_utc": "2026-09-23T22:46:04.463902+00:00",
+  "started_at_utc": "2026-09-23T22:46:39.863692+00:00",
+  "completed_at_utc": "2026-09-23T22:53:49.668468+00:00",
+  "config_sha256": "9e04d6d7d7cac19863595e66aa6f034eedd5fbeec47cf3a038680c9686966f3d",
+  "report_sha256": "8ccd8854a78f41579dbd9125fbbd5f5dcce202103be9d42887a16412aaefdacd",
+  "dataset_sha256": "91a2a8108cb8673af3f2f02dcf27b0f75cd9f629be632c01a4b0563a78bdbb0a",
+  "rubric_sha256": "ef8f4fffc7d8c47aea97168f0c90727edba5f05f01c82a749e978abb44da03ba",
+  "judge": "databricks-meta-llama-3-3-70b-instruct",
+  "summary": {
+    "planned": 20,
+    "attempted": 20,
+    "execution_errors": 0,
+    "judged": 20,
+    "correct": 20,
+    "relevant": 20,
+    "median_s": 18.860500000000002,
+    "p95_s": 25.044
+  },
+  "run_id": "1e3a78aca5b04a15a49ef339b0859da0",
+  "cases": [
+    {
+      "case_id": "I01",
+      "correctness": true,
+      "relevance": true
+    },
+    {
+      "case_id": "I02",
+      "correctness": true,
+      "relevance": true
+    },
+    {
+      "case_id": "I03",
+      "correctness": true,
+      "relevance": true
+    },
+    {
+      "case_id": "I04",
+      "correctness": true,
+      "relevance": true
+    },
+    {
+      "case_id": "I05",
+      "correctness": true,
+      "relevance": true
+    },
+    {
+      "case_id": "I06",
+      "correctness": true,
+      "relevance": true
+    },
+    {
+      "case_id": "I07",
+      "correctness": true,
+      "relevance": true
+    },
+    {
+      "case_id": "I08",
+      "correctness": true,
+      "relevance": true
+    },
+    {
+      "case_id": "I09",
+      "correctness": true,
+      "relevance": true
+    },
+    {
+      "case_id": "I10",
+      "correctness": true,
+      "relevance": true
+    },
+    {
+      "case_id": "I11",
+      "correctness": true,
+      "relevance": true
+    },
+    {
+      "case_id": "I12",
+      "correctness": true,
+      "relevance": true
+    },
+    {
+      "case_id": "I13",
+      "correctness": true,
+      "relevance": true
+    },
+    {
+      "case_id": "I14",
+      "correctness": true,
+      "relevance": true
+    },
+    {
+      "case_id": "I15",
+      "correctness": true,
+      "relevance": true
+    },
+    {
+      "case_id": "I16",
+      "correctness": true,
+      "relevance": true
+    },
+    {
+      "case_id": "I17",
+      "correctness": true,
+      "relevance": true
+    },
+    {
+      "case_id": "I18",
+      "correctness": true,
+      "relevance": true
+    },
+    {
+      "case_id": "I19",
+      "correctness": true,
+      "relevance": true
+    },
+    {
+      "case_id": "I20",
+      "correctness": true,
+      "relevance": true
+    }
+  ],
+  "job_run_id": 584130039673773,
+  "method": "Genie Conversation API + referencia SQL independiente + juez; NO benchmark nativo UI",
+  "human_review": "pending"
+}

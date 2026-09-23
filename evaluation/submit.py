@@ -4,6 +4,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from deploy.genie_space import ROOT, read, save, client, git_revision
+from deploy.upload import ensure_file
 
 REMOTE = '/Shared/ianbal-genie-iac'
 
@@ -29,7 +30,7 @@ def main():
     w.workspace.mkdirs(revision)
     w.workspace.mkdirs(REMOTE + '/state/receipts')
     for name in ['benchmark.py', 'run.py']:
-        w.workspace.upload(revision + '/' + name, (ROOT / 'evaluation' / name).read_bytes(), format=ImportFormat.AUTO, overwrite=False)
+        ensure_file(w.workspace, revision + '/' + name, (ROOT / 'evaluation' / name).read_bytes())
     receipt_path = REMOTE + '/state/receipts/' + args.version + f'-attempt{args.attempt}.json'
     w.workspace.upload(receipt_path, (ROOT / '.local/deployed.json').read_bytes(), format=ImportFormat.AUTO, overwrite=False)
     environment = JobEnvironment(environment_key='benchmark', spec=Environment(environment_version='5', dependencies=['mlflow[databricks]==3.16.0', 'databricks-sdk==0.140.0', 'openai==3.16.2']))
