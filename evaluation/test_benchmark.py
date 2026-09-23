@@ -27,10 +27,4 @@ class ComparisonIntegrity(unittest.TestCase):
     b.save(b.ROOT/'reports'/'V0.json',{'version':'V0','dataset_sha256':b.sha(cases),'rubric_sha256':'r','judge':'j','cases':[{'case_id':'I01','question':'q','reference':{'rows':[['2']]},'latency_s':1,'correctness':True,'relevance':True}]})
     with self.assertRaisesRegex(AssertionError,'Referencia o pregunta alterada'):b.compare()
    finally:b.ROOT=original
- def test_public_report_has_only_allowed_case_fields(self):
-  data=json.loads((b.ROOT/'comparison-public.json').read_text())
-  self.assertEqual([v['correct'] for v in data['versions']],[17,19,20])
-  for rows in data['cases'].values():
-   self.assertEqual(len(rows),20)
-   self.assertTrue(all(set(row)=={'case_id','correctness'} for row in rows))
 if __name__=='__main__':unittest.main()

@@ -7,9 +7,6 @@ import os
 from pathlib import Path
 import sys
 
-os.environ['S07_REMOTE'] = '1'
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import benchmark as b
 
 
 def stamp():
@@ -24,11 +21,16 @@ def normalized(config):
 
 
 def main():
+    global b
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--version', choices=['V0','V1','V2'], required=True)
     ap.add_argument('--state', required=True)
     ap.add_argument('--receipt', required=True)
+    ap.add_argument('--code-root', required=True, help='Ruta explícita: el runtime no garantiza __file__')
     args = ap.parse_args()
+    os.environ['S07_REMOTE'] = '1'
+    sys.path.insert(0, args.code_root)
+    import benchmark as b
     b.ROOT = Path(args.state)
     b.ROOT.mkdir(parents=True, exist_ok=True)
     receipt = json.loads(Path(args.receipt).read_text())
@@ -47,7 +49,7 @@ def main():
     audit = {'version': args.version, 'commit': receipt['commit'], 'space_id': receipt['space_id'],
              'deployment_at_utc': receipt['at_utc'], 'started_at_utc': stamp(), 'completed_at_utc': None,
              'config_sha256': b.sha(normalized(before)), 'deployment': receipt,
-             'runner_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
+             'runner_sha256': hashlib.sha256((Path(args.code_root) / 'run.py').read_bytes()).hexdigest()}
     b.save(provenance, audit)
     b.run(args.version, receipt['space_id'])
     after = w.genie.get_space(receipt['space_id'], include_serialized_space=True).as_dict()
