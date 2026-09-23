@@ -88,6 +88,11 @@ Obtén el ID del warehouse en Databricks → SQL Warehouses → tu warehouse →
 ```bash
 git switch -c practica-manuel
 git restore --source v0-evaluacion -- agente/instrucciones.md agente/space.json
+```
+
+Si usarás datos propios, adapta ahora tablas, preguntas y prompt en tu editor. Hazlo después de restore (que reemplaza los archivos) y antes de guardar el commit. Después vuelve a Terminal:
+
+```bash
 git diff --stat
 git add agente/instrucciones.md agente/space.json
 git commit -m "Practica: punto de partida V0"
