@@ -6,7 +6,9 @@ Secuencia: commit V0 → deploy → benchmark → revisar → commit V1 → depl
 
 ## Ejecutar
 
-1. Configura un perfil Databricks autorizado y un entorno local: crea `.local/` y copia `environments/classroom.example.json` a `.local/classroom.json`; completa warehouse/perfil.
+**Primera vez:** sigue [la guía desde Terminal hasta Jobs y MLflow](docs/PRIMERA-EJECUCION.md), con instalación, acceso, carpeta, comandos, resultados esperados y recuperación. Para consultar la serie existente sin repetirla: `python evaluation/status.py V0`.
+
+1. Configura un perfil Databricks autorizado y un entorno local: crea `.local/` y copia `environments/classroom.example.json` a `.local/classroom.json`; completa warehouse/perfil y un `workspace_root` exclusivo para la nueva serie. Usa otra copia local para otra práctica; no copies los recibos `.local` de la serie anterior.
 2. `python deploy/genie_space.py create --label V0` crea el Space y guarda su ID local. Requiere checkout limpio.
 3. `python evaluation/submit.py V0` ejecuta las 20 preguntas como Job Python serverless. Congela gold SQL una vez y usa el mismo juez/rúbrica para las versiones siguientes.
 4. Revisa los resultados; modifica `agente/instrucciones.md` y haz commit. `python deploy/genie_space.py plan --out .local/plan.json`, revisa diff y `python deploy/genie_space.py apply --label V1`. Después `python evaluation/submit.py V1`.
