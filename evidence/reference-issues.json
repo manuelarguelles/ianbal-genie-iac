@@ -1,0 +1,19 @@
+[
+  {
+    "case_id": "I06",
+    "issue": "La pregunta pide proveedores pero la referencia SQL lee item_n_offers",
+    "verified_sql_result": {
+      "ofertas": 6,
+      "proveedores_distintos": 4
+    },
+    "verification": "COUNT(*) frente a COUNT(DISTINCT supplier_id), misma fuente y filtro; SQL SUCCEEDED",
+    "benchmark_unchanged": true,
+    "human_review": "pending"
+  },
+  {
+    "case_id": "I17",
+    "issue": "El promedio global mezcla monedas: valor nominal, no precio económicamente comparable",
+    "benchmark_unchanged": true,
+    "human_review": "pending"
+  }
+]
